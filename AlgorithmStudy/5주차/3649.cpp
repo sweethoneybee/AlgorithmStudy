@@ -10,7 +10,6 @@
 #include <algorithm>
 using namespace std;
 
-
 void testCase(int holeWidth, int n) {
     vector<int> legos;
     for(int i = 0; i < n; i++) {
@@ -20,7 +19,7 @@ void testCase(int holeWidth, int n) {
     }
     
     if (n < 2) {
-        cout << "danger";
+        cout << "danger" << endl;
         return;
     }
     
@@ -42,20 +41,22 @@ void testCase(int holeWidth, int n) {
     }
     
     if (smallIndex < bigIndex) {
-        cout << "yes " << legos[smallIndex] << " " << legos[bigIndex];
+        cout << "yes " << legos[smallIndex] << " " << legos[bigIndex] << endl;
     } else {
-        cout << "danger";
+        cout << "danger" << endl;
     }
 }
 
 int main(void) {
     int holeWidth, n;
     
-    while(cin >> holeWidth >> n) {
+    while(1) {
+        cin >> holeWidth >> n;
+        if (cin.eof() == true) {
+            break;
+        }
         holeWidth = holeWidth * 10000000;
         testCase(holeWidth, n);
     }
-
-    cout << "wow";
     return 0;
 }
