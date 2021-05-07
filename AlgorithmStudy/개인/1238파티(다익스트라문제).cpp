@@ -14,9 +14,10 @@ const int MAX = 999999999;
 int N, M, X;
 
 int dijkstra(const int s, const int x, const vector<vector<pair<int, int>>>& path) {
-    vector<int> dist(N + 1, MAX);
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
-    pq.push(make_pair(0, s));
+    vector<int> dist(N + 1, MAX);
+    dist[s] = 0;
+    pq.push(make_pair(dist[s], s));
     while(!pq.empty()) {
         int from = pq.top().second;
         int cost = pq.top().first;
@@ -48,10 +49,8 @@ int main(void) {
     
     int result = -1;
     for(int i = 1; i <= N; i++) {
-        if (i != X) {
-            int value = dijkstra(i, X, path) + dijkstra(X, i, path);
-            if (result < value) result = value;
-        }
+        int value = dijkstra(i, X, path) + dijkstra(X, i, path);
+        if (result < value) result = value;
     }
     cout << result;
     return 0;
